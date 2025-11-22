@@ -160,3 +160,55 @@ Depending on your PC hardware, LLM inference can take a few seconds. GPU acceler
 
 ## Hackathon Project
 This is a hackathon project built in under 1 hour with simplified authentication and streamlined features for rapid demonstration.
+
+## Output - Extended
+
+```
+(llamaenv) gsn@gsn-batcomputer:~/Phoenix/AILA/Food-Friend$ python3 chat_bot.py 
+Welcome to Food-Friend!
+Enter your name: Sowmiya
+Loaded existing profile for Sowmiya
+
+llama_context: n_ctx_per_seq (2048) < n_ctx_train (32768) -- the full capacity of the model will not be utilized
+
+Describe your favorite foods or cuisines:
+> I like spicy indian food like biriyani
+
+Extracted food choices: ['biriyani']
+
+Saved your preferences!
+Finding your top matches...
+
+Top Matches:
+
+Priya Patel: 52% match
+  Python score: 34%
+  LLM score: 80%
+  Reason: The dishes from User A and User B have a strong similarity in terms of spices, flavor profiles, and the presence of several common ingredients. The dishes are primarily from the Indian and biryani cuisines. The strong similarity in flavor and ingredient profiles suggest a strong match.
+  Matched cuisines: indian
+  Shared dishes: biryani
+
+Jenna: 45% match
+  Python score: 35%
+  LLM score: 60%
+  Reason: The cuisines are very similar, but the dish similarities and ingredient overlap are not strong. The spice levels and cooking styles are not consistent.
+  Matched cuisines: indian
+  Shared dishes: biryani
+
+Ahmed Hassan: 8% match
+  Python score: 0%
+  LLM score: 20%
+  Reason: User A and User B cuisines, dishes and ingredients are not aligned. No overlap in spices or cooking styles.
+
+Isabella Rossi: 8% match
+  Python score: 0%
+  LLM score: 20%
+  Reason: The cuisines are quite different. User A has Indian cuisine while User B includes Italian, Italian, Italian, Italian, Italian, Italian, Italian, Italian, Italian, Italian cuisine. The dishes are not as similar in flavor. The spice level and cooking style for User A and User B are not strong.
+
+jonathan: 8% match
+  Python score: 0%
+  LLM score: 20%
+  Reason: Cuisine and ingredients are significantly different. No overlap in common ingredients.
+
+Done!
+```
