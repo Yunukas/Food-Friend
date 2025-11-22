@@ -128,7 +128,7 @@ def main():
     results.sort(key=lambda x: x[1]["score"], reverse=True)
 
     print("🔥 Top Matches:\n")
-    for other_name, result in results[:5]:
+    for other_name, result in results[:3]:
         print(f"{other_name}: {result['score']}% match")
 
         # Show exact shared dishes

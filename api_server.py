@@ -193,7 +193,7 @@ def calculate_matches():
     
     return jsonify({
         "success": True,
-        "matches": results[:10]  # Return top 10 matches
+        "matches": results[:3]  # Return top 3 matches
     })
 
 
