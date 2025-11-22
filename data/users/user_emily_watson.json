@@ -1,6 +1,6 @@
 {
-  "userId": "550e8400-e29b-41d4-a716-446655440003",
-  "name": "Emily Watson",
+  "createdAt": "2025-11-22T10:37:00Z",
+  "lastUpdated": "2025-11-22T10:37:00Z",
   "foodChoices": [
     "Quinoa Buddha Bowl",
     "Avocado Toast",
@@ -13,6 +13,5 @@
     "Smoothie Bowl",
     "Overnight Oats"
   ],
-  "createdAt": "2025-11-22T10:37:00Z",
-  "lastUpdated": "2025-11-22T10:37:00Z"
+  "name": "Emily Watson"
 }

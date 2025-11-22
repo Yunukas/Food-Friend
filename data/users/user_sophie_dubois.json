@@ -1,6 +1,6 @@
 {
-  "userId": "550e8400-e29b-41d4-a716-446655440009",
-  "name": "Sophie Dubois",
+  "createdAt": "2025-11-22T10:43:00Z",
+  "lastUpdated": "2025-11-22T10:43:00Z",
   "foodChoices": [
     "Croissant",
     "Coq au Vin",
@@ -13,6 +13,5 @@
     "Quiche Lorraine",
     "Macarons"
   ],
-  "createdAt": "2025-11-22T10:43:00Z",
-  "lastUpdated": "2025-11-22T10:43:00Z"
+  "name": "Sophie Dubois"
 }

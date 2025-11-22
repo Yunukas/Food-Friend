@@ -1,6 +1,6 @@
 {
-  "userId": "550e8400-e29b-41d4-a716-446655440007",
-  "name": "Priya Patel",
+  "createdAt": "2025-11-22T10:41:00Z",
+  "lastUpdated": "2025-11-22T10:41:00Z",
   "foodChoices": [
     "Chicken Tikka Masala",
     "Palak Paneer",
@@ -13,6 +13,5 @@
     "Tandoori Chicken",
     "Mango Lassi"
   ],
-  "createdAt": "2025-11-22T10:41:00Z",
-  "lastUpdated": "2025-11-22T10:41:00Z"
+  "name": "Priya Patel"
 }
