@@ -1,4 +1,5 @@
 # draft_chat_bot.py
+
 import os
 import json
 import uuid
@@ -14,43 +15,74 @@ def user_file(name):
     safe = name.replace(" ", "_").lower()
     return os.path.join(DATA_DIR, f"user_{safe}.json")
 
+
 def save_user_json(data):
+    """
+    Saves user JSON with guaranteed correct schema:
+    {
+      "userId": "",
+      "name": "",
+      "foodChoices": [],
+      "createdAt": "",
+      "lastUpdated": ""
+    }
+    """
     with open(user_file(data["name"]), "w") as f:
         json.dump(data, f, indent=2)
 
+
 def load_all_users(exclude=None):
+    """
+    Loads all users except the current one.
+    Ensures each loaded user has 'name' and 'foodChoices'.
+    """
     users = []
+
     for fname in os.listdir(DATA_DIR):
-        if fname.endswith(".json"):
-            with open(os.path.join(DATA_DIR, fname)) as f:
+        if not fname.endswith(".json"):
+            continue
+
+        path = os.path.join(DATA_DIR, fname)
+        try:
+            with open(path) as f:
                 data = json.load(f)
-                if exclude and data["name"].lower() == exclude.lower():
-                    continue
-                users.append(data)
+        except:
+            continue
+
+        # Guarantee required fields
+        if "name" not in data:
+            continue
+
+        if exclude and data["name"].lower() == exclude.lower():
+            continue
+
+        data.setdefault("foodChoices", [])
+        users.append(data)
+
     return users
+
 
 def main():
     print("🍽️ Welcome to Food-Friend!")
     name = input("Enter your name: ").strip()
 
-    # Guarantee name always exists
     if not name:
         print("Name cannot be empty.")
         return
 
     path = user_file(name)
 
-    # Load OR create user JSON
+    # Load or create profile
     if os.path.exists(path):
         print(f"Loaded existing profile for {name}\n")
         with open(path) as f:
             user = json.load(f)
 
-        # Guarantee essential fields
+        # Guarantee fields
         user.setdefault("name", name)
         user.setdefault("foodChoices", [])
         user.setdefault("userId", str(uuid.uuid4()))
-
+        user.setdefault("createdAt", str(datetime.now()))
     else:
         print(f"Creating a new profile for {name}...\n")
         user = {
@@ -58,22 +90,24 @@ def main():
             "name": name,
             "foodChoices": [],
             "createdAt": str(datetime.now()),
-            "lastUpdated": str(datetime.now()),
+            "lastUpdated": str(datetime.now())
         }
 
+    # Load local LLM
     llm = load_llm()
 
     print("\nDescribe your favorite foods or cuisines:")
     desc = input("> ").strip()
 
+    # Extract food choices (robust for Qwen 3B)
     choices = extract_food_choices(llm, desc)
 
-    # Guarantee extraction returns a list
     if not isinstance(choices, list):
         choices = []
 
     print("\nExtracted food choices:", choices)
 
+    # Update user
     user["foodChoices"] = choices
     user["lastUpdated"] = str(datetime.now())
     save_user_json(user)
@@ -81,26 +115,41 @@ def main():
     print("\nSaved your preferences!")
     print("Finding your top matches...\n")
 
+    # Load other users
     others = load_all_users(exclude=name)
 
     if not others:
         print("No other users yet. Add more profiles!")
         return
 
+    # Score matches
     results = []
     for other in others:
-        results.append((other["name"], score_pair(user, other)))
+        scoreinfo = score_pair(user, other)
+        results.append((other["name"], scoreinfo))
 
-    # Sort by score
+    # Sort by descending score
     results.sort(key=lambda x: x[1]["score"], reverse=True)
 
-    print("🔥 Top Matches:")
+    print("🔥 Top Matches:\n")
     for other_name, result in results[:5]:
-        print(f"\n{other_name}: {result['score']}% match")
-        if result["shared"]:
-            print(" Shared:", ", ".join(result["shared"]))
-        if result["keywords"] > 0:
-            print(" Keyword overlap.")
+        print(f"{other_name}: {result['score']}% match")
+
+        # Show exact shared dishes
+        if result.get("shared_exact"):
+            print("  Shared exact dishes:", ", ".join(result["shared_exact"]))
+
+        # Show matched cuisines
+        if result.get("matched_cuisines"):
+            print("  Matched cuisines:", ", ".join(result["matched_cuisines"]))
+
+        # Show general keyword similarity
+        if result.get("keyword_hits"):
+            print("  Keyword similarity:", ", ".join(result["keyword_hits"]))
+
+        print()  # spacing
+
+    print("Done!\n")
 
 
 if __name__ == "__main__":

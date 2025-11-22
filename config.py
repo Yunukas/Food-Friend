@@ -45,12 +45,12 @@ def check_model_exists():
     """
     if not MODEL_PATH.exists():
         raise FileNotFoundError(
-            f"\n❌ Model not found at: {MODEL_PATH}\n\n"
+            f"\nModel not found at: {MODEL_PATH}\n\n"
             f"📥 Please download a GGUF model and place it in the models/ directory\n"
             f"   Recommended: Llama-2-7B-Chat Q4_K_M\n"
             f"   Download from: https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF\n"
         )
-    print(f"✅ Model found at: {MODEL_PATH}")
+    # print(f"✅ Model found at: {MODEL_PATH}")
 
 
 def print_section(title):
