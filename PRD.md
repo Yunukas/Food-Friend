@@ -139,15 +139,14 @@ To create meaningful social connections through shared food preferences, making 
 
 **Requirements:**
 - Match feed showing top compatible users
-- Sortable by compatibility score, location, recent activity
+- Sortable by compatibility score, recent activity
 - User profile view with detailed preferences
 - "Like" or "Connect" functionality
-- Match filtering (dietary restrictions, location radius)
+- Match filtering (dietary restrictions)
 - Search functionality for specific preferences
-- Block/report inappropriate users
 
 **Acceptance Criteria:**
-- Display top 20 matches on initial load
+- Display top 3 matches on initial load
 - Smooth scrolling and pagination
 - Profile loads in <1 second
 - Real-time updates when preferences change
