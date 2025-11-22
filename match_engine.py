@@ -43,6 +43,22 @@ CUISINE_KEYWORDS = {
         "braised pork rice", "xiao long bao", "stinky tofu", "bubble tea",
         "boba", "gua bao", "three cup chicken", "taiwanese breakfast",
         "salt and pepper chicken", "taiwanese street food", "night market"
+    ],
+    "american": [
+        "american", "burger", "cheeseburger", "hot dog", "bbq", "barbecue",
+        "fried chicken", "mac and cheese", "steak", "ribs", "meatloaf",
+        "cornbread", "apple pie", "pancakes"
+    ],
+    "peruvian": [
+        "peruvian", "ceviche", "lomo saltado", "aji amarillo", "anticuchos",
+        "causa", "pisco sour", "pollo a la brasa", "tiradito", "chaufa",
+        "papa a la huancaina", "ceviche peruano"
+    ],
+    "french": [
+        "french", "baguette", "croissant", "coq au vin", "ratatouille",
+        "bouillabaisse", "escargot", "duck confit", "crème brûlée",
+        "creme brulee", "soufflé", "souffle", "quiche", "brie", "foie gras",
+        "bistro"
     ]
 }
 
