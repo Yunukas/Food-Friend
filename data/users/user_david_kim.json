@@ -1,6 +1,6 @@
 {
-  "userId": "550e8400-e29b-41d4-a716-446655440004",
-  "name": "David Kim",
+  "createdAt": "2025-11-22T10:38:00Z",
+  "lastUpdated": "2025-11-22T10:38:00Z",
   "foodChoices": [
     "Korean BBQ Short Ribs",
     "Bibimbap",
@@ -13,6 +13,5 @@
     "Pork Belly Ssam",
     "Bingsu"
   ],
-  "createdAt": "2025-11-22T10:38:00Z",
-  "lastUpdated": "2025-11-22T10:38:00Z"
+  "name": "David Kim"
 }

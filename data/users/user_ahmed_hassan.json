@@ -1,6 +1,6 @@
 {
-  "userId": "550e8400-e29b-41d4-a716-446655440008",
-  "name": "Ahmed Hassan",
+  "createdAt": "2025-11-22T10:42:00Z",
+  "lastUpdated": "2025-11-22T10:42:00Z",
   "foodChoices": [
     "Lamb Shawarma",
     "Falafel Platter",
@@ -13,6 +13,5 @@
     "Manakish",
     "Baklava"
   ],
-  "createdAt": "2025-11-22T10:42:00Z",
-  "lastUpdated": "2025-11-22T10:42:00Z"
+  "name": "Ahmed Hassan"
 }

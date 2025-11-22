@@ -2,7 +2,6 @@
 
 import os
 import json
-import uuid
 from datetime import datetime
 
 from llm_utils import load_llm, extract_food_choices
@@ -20,7 +19,6 @@ def save_user_json(data):
     """
     Saves user JSON with guaranteed correct schema:
     {
-      "userId": "",
       "name": "",
       "foodChoices": [],
       "createdAt": "",
@@ -81,12 +79,10 @@ def main():
         # Guarantee fields
         user.setdefault("name", name)
         user.setdefault("foodChoices", [])
-        user.setdefault("userId", str(uuid.uuid4()))
         user.setdefault("createdAt", str(datetime.now()))
     else:
         print(f"Creating a new profile for {name}...\n")
         user = {
-            "userId": str(uuid.uuid4()),
             "name": name,
             "foodChoices": [],
             "createdAt": str(datetime.now()),
@@ -132,7 +128,7 @@ def main():
     results.sort(key=lambda x: x[1]["score"], reverse=True)
 
     print("🔥 Top Matches:\n")
-    for other_name, result in results[:5]:
+    for other_name, result in results[:3]:
         print(f"{other_name}: {result['score']}% match")
 
         # Show exact shared dishes

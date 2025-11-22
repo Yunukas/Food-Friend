@@ -8,7 +8,6 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 import json
-import uuid
 from datetime import datetime
 
 from llm_utils import load_llm, extract_food_choices
@@ -93,7 +92,6 @@ def login():
     else:
         # Create new user
         new_user = {
-            "userId": str(uuid.uuid4()),
             "name": name,
             "foodChoices": [],
             "createdAt": datetime.now().isoformat(),
@@ -195,7 +193,7 @@ def calculate_matches():
     
     return jsonify({
         "success": True,
-        "matches": results[:10]  # Return top 10 matches
+        "matches": results[:3]  # Return top 3 matches
     })
 
 
