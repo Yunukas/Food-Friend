@@ -113,9 +113,17 @@ function App() {
     }
   }
 
+  const handleLogout = () => {
+    setIsLoggedIn(false)
+    setUserName('')
+    setFoodChoices([])
+    setMatches([])
+    setError('')
+  }
+
   if (!isLoggedIn) {
     return (
-      <div className="app">
+      <div className="app centered">
         <div className="login-container">
           <h1>🍕 Food-Friend</h1>
           <p>Find your foodie matches!</p>
@@ -142,6 +150,9 @@ function App() {
       <header>
         <h1>🍕 Food-Friend</h1>
         <p>Welcome, {userName}!</p>
+        <button onClick={handleLogout} className="btn-logout">
+          Switch User
+        </button>
       </header>
 
       {error && <div className="error-banner">{error}</div>}

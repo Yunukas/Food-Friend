@@ -27,10 +27,16 @@ body {
   padding: 20px;
 }
 
+.app.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Login Screen */
 .login-container {
   max-width: 400px;
-  margin: 100px auto;
+  width: 100%;
   text-align: center;
   background: var(--card-bg);
   padding: 40px;
@@ -54,6 +60,7 @@ body {
 header {
   text-align: center;
   margin-bottom: 30px;
+  position: relative;
 }
 
 header h1 {
@@ -64,6 +71,26 @@ header h1 {
 
 header p {
   color: var(--text-secondary);
+}
+
+.btn-logout {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-logout:hover {
+  background: var(--primary-color);
+  color: white;
 }
 
 /* Main Content */
