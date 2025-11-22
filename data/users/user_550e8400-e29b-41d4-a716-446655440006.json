@@ -1,0 +1,18 @@
+{
+  "userId": "550e8400-e29b-41d4-a716-446655440006",
+  "name": "James Thompson",
+  "foodChoices": [
+    "New York Strip Steak",
+    "BBQ Ribs",
+    "Bacon Cheeseburger",
+    "Buffalo Wings",
+    "Pulled Pork Sandwich",
+    "Mac and Cheese",
+    "Loaded Baked Potato",
+    "Fried Chicken",
+    "Meatloaf",
+    "Apple Pie"
+  ],
+  "createdAt": "2025-11-22T10:40:00Z",
+  "lastUpdated": "2025-11-22T10:40:00Z"
+}

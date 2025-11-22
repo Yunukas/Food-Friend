@@ -1,0 +1,23 @@
+{
+  "userId": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "Alex Johnson",
+  "foodChoices": [
+    "Margherita Pizza",
+    "Salmon Nigiri",
+    "Beef Tacos al Pastor",
+    "Truffle Carbonara",
+    "Spicy Tuna Roll",
+    "Fettuccine Alfredo",
+    "California Roll",
+    "Chicken Quesadilla",
+    "Pepperoni Pizza",
+    "Tonkotsu Ramen",
+    "Pad Thai",
+    "Caesar Salad",
+    "Grilled Salmon",
+    "Beef Burger",
+    "Chocolate Lava Cake"
+  ],
+  "createdAt": "2025-11-22T10:30:00Z",
+  "lastUpdated": "2025-11-22T10:30:00Z"
+}

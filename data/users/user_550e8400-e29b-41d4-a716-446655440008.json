@@ -1,0 +1,18 @@
+{
+  "userId": "550e8400-e29b-41d4-a716-446655440008",
+  "name": "Ahmed Hassan",
+  "foodChoices": [
+    "Lamb Shawarma",
+    "Falafel Platter",
+    "Chicken Kebab",
+    "Baba Ganoush",
+    "Tabbouleh",
+    "Lamb Kofta",
+    "Fattoush Salad",
+    "Beef Shawarma Wrap",
+    "Manakish",
+    "Baklava"
+  ],
+  "createdAt": "2025-11-22T10:42:00Z",
+  "lastUpdated": "2025-11-22T10:42:00Z"
+}

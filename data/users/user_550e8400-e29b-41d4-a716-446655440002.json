@@ -1,0 +1,18 @@
+{
+  "userId": "550e8400-e29b-41d4-a716-446655440002",
+  "name": "Marcus Rodriguez",
+  "foodChoices": [
+    "Beef Barbacoa Burrito",
+    "Carne Asada Fries",
+    "Chicken Enchiladas",
+    "Chorizo Breakfast Tacos",
+    "Elote Street Corn",
+    "Nachos Supreme",
+    "Chimichangas",
+    "Jalapeño Poppers",
+    "Queso Fundido",
+    "Tres Leches Cake"
+  ],
+  "createdAt": "2025-11-22T10:36:00Z",
+  "lastUpdated": "2025-11-22T10:36:00Z"
+}
