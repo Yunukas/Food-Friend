@@ -33,6 +33,17 @@ CUISINE_KEYWORDS = {
         "noodles", "kung pao", "dumplings", "mapo tofu",
         "fried rice", "hotpot"
     ],
+    "vietnamese": [
+        "vietnamese", "pho", "pho bo", "pho ga", "bun cha", "bun bo hue",
+        "banh mi", "banh xeo", "com tam", "hu tieu", "goi cuon", "cha gio",
+        "nem", "bun rieu", "mi quang", "ca phe sua da", "spring roll"
+    ],
+    "taiwanese": [
+        "taiwanese", "beef noodle", "beef noodle soup", "lu rou fan",
+        "braised pork rice", "xiao long bao", "stinky tofu", "bubble tea",
+        "boba", "gua bao", "three cup chicken", "taiwanese breakfast",
+        "salt and pepper chicken", "taiwanese street food", "night market"
+    ]
 }
 
 # --------------------------------------------------------
