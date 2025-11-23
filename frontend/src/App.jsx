@@ -2,6 +2,8 @@ import { useState } from 'react'
 import './App.css'
 
 const API_URL = 'http://localhost:5000/api'
+const APP_NAME = import.meta.env.VITE_APP_NAME || 'Food Friend'
+const APP_VERSION = import.meta.env.VITE_APP_VERSION || '1.0.0'
 
 function App() {
   const [userName, setUserName] = useState('')
@@ -125,7 +127,7 @@ function App() {
     return (
       <div className="app centered">
         <div className="login-container">
-          <h1>🍕 Food-Friend</h1>
+          <h1>🍕 {APP_NAME}</h1>
           <p>Find your foodie matches!</p>
           {error && <div className="error-message">{error}</div>}
           <form onSubmit={handleLogin}>
@@ -141,6 +143,7 @@ function App() {
             </button>
           </form>
         </div>
+        <footer className="version-footer">v{APP_VERSION}</footer>
       </div>
     )
   }
@@ -148,7 +151,7 @@ function App() {
   return (
     <div className="app">
       <header>
-        <h1>🍕 Food-Friend</h1>
+        <h1>🍕 {APP_NAME}</h1>
         <p>Welcome, {userName}!</p>
         <button onClick={handleLogout} className="btn-logout">
           Switch User
@@ -242,6 +245,8 @@ function App() {
           )}
         </div>
       </div>
+      
+      <footer className="version-footer">v{APP_VERSION}</footer>
     </div>
   )
 }

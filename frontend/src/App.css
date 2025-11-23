@@ -329,3 +329,16 @@ header p {
   text-align: center;
   font-size: 14px;
 }
+
+/* Version Footer */
+.version-footer {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #999;
+  font-size: 0.85em;
+  text-align: center;
+  padding: 5px;
+  z-index: 10;
+}
