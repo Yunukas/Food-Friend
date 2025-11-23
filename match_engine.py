@@ -1,5 +1,8 @@
 # match_engine.py
 
+import re
+from config import DEFAULT_PARAMS
+
 # --------------------------------------------------------
 # Cuisine keyword dictionary
 # --------------------------------------------------------
@@ -153,7 +156,96 @@ def jaccard_similarity(list1, list2):
 
 
 # --------------------------------------------------------
-# FINAL COMPATIBILITY SCORING
+# LLM-BASED SCORING
+# --------------------------------------------------------
+
+SCORING_PROMPT = """You are a food compatibility expert. Analyze how well two people's food preferences match.
+
+Person A likes: {foods_a}
+Person B likes: {foods_b}
+
+Evaluate their compatibility based on:
+1. Shared specific dishes
+2. Similar cuisines (e.g., both like Asian food)
+3. Similar flavor profiles (spicy, sweet, savory)
+4. Compatible dietary preferences
+
+Respond EXACTLY in this format:
+Score: [number from 0-100]
+Shared: [comma-separated list of shared interests]
+Reason: [brief explanation]
+
+Example:
+Score: 85
+Shared: Italian cuisine, spicy food, pasta
+Reason: Both enjoy Italian food and spicy flavors with significant pasta overlap.
+"""
+
+def score_pair_with_llm(user_a, user_b, llm):
+    """
+    Use LLM to calculate compatibility score between two users.
+    Falls back to rule-based scoring if LLM fails.
+    """
+    foods_a = user_a.get("foodChoices", [])
+    foods_b = user_b.get("foodChoices", [])
+    
+    if not foods_a or not foods_b:
+        return score_pair(user_a, user_b)  # fallback
+    
+    # Format foods as readable lists
+    foods_a_str = ", ".join(foods_a)
+    foods_b_str = ", ".join(foods_b)
+    
+    prompt = SCORING_PROMPT.format(foods_a=foods_a_str, foods_b=foods_b_str)
+    
+    try:
+        # Call LLM
+        output = llm(
+            prompt,
+            max_tokens=200,
+            temperature=0.3,
+            top_p=DEFAULT_PARAMS["top_p"],
+            top_k=DEFAULT_PARAMS["top_k"],
+            repeat_penalty=DEFAULT_PARAMS["repeat_penalty"]
+        )
+        
+        response = output["choices"][0]["text"].strip()
+        
+        # Parse LLM response
+        score_match = re.search(r"Score:\s*(\d+)", response, re.IGNORECASE)
+        shared_match = re.search(r"Shared:\s*(.+?)(?:\n|Reason:)", response, re.IGNORECASE | re.DOTALL)
+        reason_match = re.search(r"Reason:\s*(.+?)$", response, re.IGNORECASE | re.DOTALL)
+        
+        if score_match:
+            score = int(score_match.group(1))
+            score = min(max(score, 0), 100)  # clamp to 0-100
+            
+            shared_items = []
+            if shared_match:
+                shared_text = shared_match.group(1).strip()
+                shared_items = [s.strip() for s in shared_text.split(",") if s.strip()]
+            
+            reason = reason_match.group(1).strip() if reason_match else "LLM analysis"
+            
+            return {
+                "score": score,
+                "shared_exact": shared_items[:3],  # top 3 shared items
+                "matched_cuisines": [],
+                "keyword_hits": [],
+                "llm_reason": reason
+            }
+        else:
+            # Failed to parse, fallback
+            print("⚠️ LLM response parsing failed, using rule-based scoring")
+            return score_pair(user_a, user_b)
+            
+    except Exception as e:
+        print(f"⚠️ LLM scoring error: {e}, using rule-based scoring")
+        return score_pair(user_a, user_b)
+
+
+# --------------------------------------------------------
+# FINAL COMPATIBILITY SCORING (Rule-based fallback)
 # --------------------------------------------------------
 def score_pair(user_a, user_b):
     # Normalize (handle “Korean food”, “Mexican cuisine”, etc.)

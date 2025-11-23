@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 
 from llm_utils import load_llm, extract_food_choices
-from match_engine import score_pair
+from match_engine import score_pair_with_llm
 
 DATA_DIR = "data/users"
 os.makedirs(DATA_DIR, exist_ok=True)
@@ -121,7 +121,7 @@ def main():
     # Score matches
     results = []
     for other in others:
-        scoreinfo = score_pair(user, other)
+        scoreinfo = score_pair_with_llm(user, other, llm)
         results.append((other["name"], scoreinfo))
 
     # Sort by descending score

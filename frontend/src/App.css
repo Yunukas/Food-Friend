@@ -292,6 +292,23 @@ header p {
   color: var(--text-color);
 }
 
+.llm-reason {
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(255, 140, 0, 0.05);
+  border-left: 3px solid var(--secondary-color);
+  color: var(--text-secondary);
+  font-size: 0.9em;
+  line-height: 1.6;
+  border-radius: 4px;
+}
+
+.llm-reason strong {
+  color: var(--secondary-color);
+  display: block;
+  margin-bottom: 6px;
+}
+
 /* Error Messages */
 .error-message {
   background: #ff4444;

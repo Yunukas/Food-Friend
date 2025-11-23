@@ -231,6 +231,11 @@ function App() {
                       <strong>Similar tastes:</strong> {match.keywordHits.join(', ')}
                     </div>
                   )}
+                  {match.llmReason && (
+                    <div className="llm-reason">
+                      <strong>AI Analysis:</strong> {match.llmReason}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

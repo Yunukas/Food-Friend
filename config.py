@@ -21,6 +21,14 @@ DEFAULT_CONTEXT_SIZE = 2048
 DEFAULT_GPU_LAYERS = 0  # Change to -1 for GPU acceleration
 
 
+# ==================== MATCHING CONFIGURATION ====================
+
+# Toggle between LLM-based and rule-based scoring
+# Set to True to use LLM semantic matching (slower, more accurate)
+# Set to False to use rule-based keyword matching (faster, less nuanced)
+USE_LLM_SCORING = True
+
+
 # ==================== GENERATION PARAMETERS ====================
 
 # Default parameters for text generation

@@ -1,11 +1,9 @@
 {
   "createdAt": "2025-11-22 14:37:20.063400",
-  "lastUpdated": "2025-11-22T15:19:26.703517",
+  "lastUpdated": "2025-11-22T16:04:37.308174",
   "foodChoices": [
     "beef noodle soup",
-    "taiwanese food",
-    "tofu",
-    "pho"
+    "taiwanese food"
   ],
   "name": "yunus"
 }

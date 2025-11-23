@@ -10,8 +10,8 @@ import os
 import json
 from datetime import datetime
 
-from llm_utils import load_llm, extract_food_choices
-from match_engine import score_pair
+from llm_utils_updated import load_llm, extract_food_choices
+from llm_hybrid_matcher import llm_hybrid_match
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for React frontend
@@ -20,9 +20,15 @@ DATA_DIR = "data/users"
 os.makedirs(DATA_DIR, exist_ok=True)
 
 # Load LLM once at startup
-print("Loading LLM model...")
-llm = load_llm()
-print("✅ LLM loaded successfully!")
+print("🔄 Loading LLM model...")
+try:
+    llm = load_llm()
+    print("✅ LLM loaded successfully!")
+    print(f"   Model ready for inference")
+except Exception as e:
+    print(f"❌ Failed to load LLM: {e}")
+    print("   Server will start but matching will fail")
+    llm = None
 
 
 def user_file_by_name(name):
@@ -176,17 +182,41 @@ def calculate_matches():
             "matches": []
         })
     
-    # Calculate scores
+    # Calculate scores using hybrid matcher (Python + LLM)
+    # Performance optimization: Only use expensive LLM scoring on top Python matches
+    
+    # Check if LLM is loaded
+    if llm is None:
+        return jsonify({"error": "LLM not loaded. Please restart the server."}), 500
+    
     results = []
+    
+    # First pass: Quick Python-only scoring
+    from match_engine import score_pair
+    quick_scores = []
     for other in others:
-        scoreinfo = score_pair(user, other)
+        py_score = score_pair(user, other)
+        quick_scores.append((other, py_score))
+    
+    # Sort and take top 5 candidates for full LLM analysis
+    quick_scores.sort(key=lambda x: x[1]["score"], reverse=True)
+    top_candidates = quick_scores[:5]
+    
+    # Second pass: Full hybrid scoring on top candidates only
+    print(f"🔍 Analyzing top {len(top_candidates)} candidates with LLM...")
+    for other, py_result in top_candidates:
+        scoreinfo = llm_hybrid_match(llm, user, other)
         results.append({
             "name": other["name"],
-            "score": scoreinfo["score"],
+            "score": scoreinfo["final_score"],
             "sharedFoods": scoreinfo.get("shared_exact", []),
             "matchedCuisines": scoreinfo.get("matched_cuisines", []),
-            "keywordHits": scoreinfo.get("keyword_hits", [])
+            "keywordHits": scoreinfo.get("keyword_hits", []),
+            "llmReason": scoreinfo.get("reason", ""),
+            "pythonScore": scoreinfo.get("python_score", 0),
+            "llmScore": scoreinfo.get("llm_score", 0)
         })
+    print(f"✅ Completed analysis")
     
     # Sort by score descending
     results.sort(key=lambda x: x["score"], reverse=True)
