@@ -1,6 +1,8 @@
 # llm_utils.py
 import re
+import os
 from llama_cpp import Llama
+from dotenv import load_dotenv
 from config import (
     MODEL_PATH,
     DEFAULT_CONTEXT_SIZE,
@@ -9,8 +11,12 @@ from config import (
     check_model_exists
 )
 
-EXTRACTION_PROMPT = """
-You are Food-Friend, an assistant that extracts food preferences.
+# Load environment variables
+load_dotenv()
+APP_NAME = os.getenv('APP_NAME', 'Food Friend')
+
+EXTRACTION_PROMPT = f"""
+You are {APP_NAME}, an assistant that extracts food preferences.
 
 Return ONLY items the user says they like.
 

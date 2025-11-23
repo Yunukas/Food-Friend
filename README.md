@@ -1,4 +1,4 @@
-# Food-Friend
+# Food Friend
 
 🍕 A social food preference matching app powered by local LLM (llama.cpp)
 
@@ -165,7 +165,7 @@ This is a hackathon project built in under 1 hour with simplified authentication
 
 ```
 (llamaenv) gsn@gsn-batcomputer:~/Phoenix/AILA/Food-Friend$ python3 chat_bot.py 
-Welcome to Food-Friend!
+Welcome to Food Friend!
 Enter your name: Sowmiya
 Loaded existing profile for Sowmiya
 

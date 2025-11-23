@@ -4,6 +4,11 @@ import os
 import json
 import uuid
 from datetime import datetime
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+APP_NAME = os.getenv('APP_NAME', 'Food Friend')
 
 from llm_utils_updated import load_llm, extract_food_choices
 from llm_hybrid_matcher import llm_hybrid_match
@@ -43,7 +48,7 @@ def load_all_users(exclude=None):
 
 
 def main():
-    print("Welcome to Food-Friend!")
+    print(f"Welcome to {APP_NAME}!")
     name = input("Enter your name: ").strip()
 
     if not name:

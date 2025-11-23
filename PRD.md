@@ -2,7 +2,7 @@
 
 ## 1. Executive Summary
 
-**Product Name:** Food-Friend  
+**Product Name:** Food Friend  
 **Version:** 1.0 (Hackathon MVP)  
 **Date:** November 22, 2025  
 **Document Owner:** Product Team  
@@ -10,7 +10,7 @@
 **Timeline:** 1 hour hackathon project
 
 ### 1.1 Product Overview
-Food-Friend is a social food preference matching application that helps groups of people discover their best matches based on food preferences and dietary choices. Using local AI-powered matching algorithms via llama.cpp, the platform analyzes user food preferences to suggest compatible friends for dining experiences, meal sharing, and food-related social activities.
+Food Friend is a social food preference matching application that helps groups of people discover their best matches based on food preferences and dietary choices. Using local AI-powered matching algorithms via llama.cpp, the platform analyzes user food preferences to suggest compatible friends for dining experiences, meal sharing, and food-related social activities.
 
 ### 1.2 Business Objectives
 - Connect people with similar food preferences and dietary habits

@@ -1,4 +1,4 @@
-# Food-Friend User Data Structure
+# Food Friend User Data Structure
 
 ## JSON Schema for User Food Preferences
 

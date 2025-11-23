@@ -9,6 +9,12 @@ from flask_cors import CORS
 import os
 import json
 from datetime import datetime
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+APP_NAME = os.getenv('APP_NAME', 'Food Friend')
+APP_VERSION = os.getenv('APP_VERSION', '1.0.0')
 
 from llm_utils_updated import load_llm, extract_food_choices
 from llm_hybrid_matcher import llm_hybrid_match
@@ -238,6 +244,6 @@ def get_users():
 
 
 if __name__ == '__main__':
-    print("\n🍕 Food-Friend API Server")
+    print(f"\n🍕 {APP_NAME} API Server v{APP_VERSION}")
     print("=" * 50)
     app.run(host='0.0.0.0', port=5000, debug=True)
