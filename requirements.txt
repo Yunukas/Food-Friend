@@ -1,0 +1,4 @@
+flask
+flask-cors
+llama-cpp-python
+python-dotenv

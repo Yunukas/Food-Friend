@@ -1,0 +1,9 @@
+{
+  "name": "bob",
+  "foodChoices": [
+    "pizza",
+    "pasta"
+  ],
+  "createdAt": "2025-11-22T16:17:58.065256",
+  "lastUpdated": "2025-11-22T16:18:07.652338"
+}

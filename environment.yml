@@ -1,0 +1,11 @@
+name: food-friend
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - flask
+  - flask-cors
+  - pip:
+    - llama-cpp-python
